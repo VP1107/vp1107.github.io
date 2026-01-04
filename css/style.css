@@ -140,15 +140,6 @@ body {
     margin-top: 0;
 }
 
-hr {
-    border: 0;
-    height: 2px;
-    background: #ddd;
-    margin-bottom: 25px;
-    width: 50px;
-    margin-left: 0;
-}
-
 .summary-text {
     text-align: justify;
     color: #555;
@@ -172,4 +163,148 @@ li {
 
 strong {
     color: var(--primary-color);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+        text-align: center;
+    }
+
+    #mainbody {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .sidebar-section ul {
+        display: inline-block;
+        text-align: left;
+    }
+}
+
+/* --- Download Button --- */
+.download-btn {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.download-btn:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+/* --- Print Styling --- */
+@media print {
+    .download-btn {
+        display: none;
+    }
+
+    .container {
+        flex-direction: row;
+        /* Force desktop layout for print */
+        min-height: auto;
+        /* Remove minimum height constraint */
+    }
+
+    #sidebar {
+        width: 28%;
+        /* Slightly wider to accommodate text */
+        text-align: left;
+        padding: 15px;
+        background-color: var(--primary-color) !important;
+        /* Ensure background color prints */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    #mainbody {
+        width: 72%;
+        padding: 15px 25px;
+    }
+
+    .sidebar-section ul {
+        display: block;
+        text-align: left;
+    }
+
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 10.5pt;
+        /* Reduced font size */
+    }
+
+    /* Compaction overrides */
+    h1 {
+        font-size: 22px;
+        margin: 0 0 5px 0;
+    }
+
+    h2 {
+        font-size: 16px;
+        margin: 10px 0 5px 0;
+    }
+
+    h3 {
+        font-size: 14px;
+        margin: 0 0 5px 0;
+    }
+
+    p {
+        margin-bottom: 5px;
+    }
+
+    li {
+        margin-bottom: 2px;
+    }
+
+    ul,
+    ol {
+        margin-bottom: 5px;
+    }
+
+    .pfp {
+        width: 100px;
+        height: 100px;
+        border-width: 2px;
+    }
+
+    #self {
+        margin-bottom: 10px;
+    }
+
+    .sidebar-divider {
+        margin: 10px 0;
+    }
+
+    .sidebar-section {
+        margin-bottom: 10px;
+    }
+
+    .section_title {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+
+    .experience-list li,
+    .education-list li {
+        margin-bottom: 6px;
+    }
+    
+    .summary-text {
+        margin-bottom: 10px;
+    }
 }
