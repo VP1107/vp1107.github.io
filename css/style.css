@@ -73,6 +73,18 @@ body {
     margin-bottom: 20px;
 }
 
+.contact-item {
+    display: flex;
+    align-items: center;
+    /* or flex-start */
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.contact-item .icon {
+    flex-shrink: 0;
+}
+
 .sidebar-section h3 {
     border-bottom: 1px solid var(--accent-color);
     padding-bottom: 5px;
@@ -94,8 +106,8 @@ body {
 }
 
 .link-list {
-    list-style: none !important;
-    padding-left: 0 !important;
+    list-style: none;
+    padding-left: 0;
 }
 
 .link-list li {
@@ -207,31 +219,63 @@ strong {
 
 /* --- Print Styling --- */
 @media print {
+    @page {
+        margin: 0;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 10.5pt;
+    }
+
     .download-btn {
         display: none;
     }
 
     .container {
         flex-direction: row;
-        /* Force desktop layout for print */
-        min-height: auto;
-        /* Remove minimum height constraint */
+        min-height: 100vh;
+        height: auto;
+        display: flex;
+        align-items: stretch;
+        /* Ensure full height for sidebar */
+        /* If user wants centered content when short: */
+        /* align-items: center; justify-content: center; */
+        /* But 'stretch' is better for sidebars. */
     }
 
     #sidebar {
-        width: 28%;
-        /* Slightly wider to accommodate text */
+        width: 30%;
+        /* 30/70 split */
         text-align: left;
-        padding: 15px;
+        padding: 25px;
         background-color: var(--primary-color) !important;
-        /* Ensure background color prints */
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        min-height: 100vh;
     }
 
     #mainbody {
-        width: 72%;
-        padding: 15px 25px;
+        width: 70%;
+        /* 30/70 split */
+        padding: 25px 35px;
+    }
+
+    /* Display simplified URLs in print */
+    .link-list a::after {
+        content: " (" attr(data-print-url) ")";
+        font-size: 0.9em;
+        opacity: 0.8;
+    }
+
+    .link-list a {
+        text-decoration: none !important;
+        color: var(--accent-color) !important;
     }
 
     .sidebar-section ul {
@@ -239,14 +283,6 @@ strong {
         text-align: left;
     }
 
-    body {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        font-size: 10.5pt;
-        /* Reduced font size */
-    }
-
-    /* Compaction overrides */
     h1 {
         font-size: 22px;
         margin: 0 0 5px 0;
@@ -303,7 +339,7 @@ strong {
     .education-list li {
         margin-bottom: 6px;
     }
-    
+
     .summary-text {
         margin-bottom: 10px;
     }
