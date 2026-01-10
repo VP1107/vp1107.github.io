@@ -76,7 +76,6 @@ body {
 .contact-item {
     display: flex;
     align-items: center;
-    /* or flex-start */
     gap: 10px;
     margin-bottom: 5px;
 }
@@ -142,10 +141,17 @@ body {
 .section_title {
     font-size: 28px;
     color: var(--primary-color);
-    margin-bottom: 10px;
     margin-top: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 40px auto;
+    width: 80%;
 }
 
 .section_title:first-child {
@@ -243,15 +249,10 @@ strong {
         height: auto;
         display: flex;
         align-items: stretch;
-        /* Ensure full height for sidebar */
-        /* If user wants centered content when short: */
-        /* align-items: center; justify-content: center; */
-        /* But 'stretch' is better for sidebars. */
     }
 
     #sidebar {
         width: 30%;
-        /* 30/70 split */
         text-align: left;
         padding: 25px;
         background-color: var(--primary-color) !important;
@@ -262,7 +263,6 @@ strong {
 
     #mainbody {
         width: 70%;
-        /* 30/70 split */
         padding: 25px 35px;
     }
 
@@ -342,5 +342,77 @@ strong {
 
     .summary-text {
         margin-bottom: 10px;
+    }
+}
+
+/* --- JavaScript Animation Styles --- */
+.reveal-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-element.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skill-animate {
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.active-section {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .active-section {
+        border-left: none;
+        padding-left: 0;
+    }
+}
+
+.link-list a {
+    transition: color 0.3s, padding-left 0.3s, transform 0.3s ease;
+}
+
+.pfp {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#name {
+    display: inline-block;
+    min-height: 1.2em;
+}
+
+@media print {
+    .reveal-element {
+        opacity: 1;
+        transform: none;
+    }
+
+    .skill-animate {
+        opacity: 1;
+        animation: none;
+    }
+
+    .active-section {
+        border-left: none;
+        padding-left: 0;
     }
 }
